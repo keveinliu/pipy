@@ -3531,6 +3531,7 @@ RegExp::RegExp(Str *pattern, Str *flags)
 }
 
 auto RegExp::exec(Str *str) -> Array* {
+  printf("RegExp(%s).exec(%s)\n", m_source->c_str(), str->c_str());
   std::smatch sm;
   auto &match = m_global ? m_match : sm;
 
@@ -3552,6 +3553,7 @@ auto RegExp::exec(Str *str) -> Array* {
 }
 
 bool RegExp::test(Str *str) {
+  printf("RegExp(%s).test(%s)\n", m_source->c_str(), str->c_str());
   std::smatch match;
   std::regex_search(str->str(), match, m_regex);
   return !match.empty();
